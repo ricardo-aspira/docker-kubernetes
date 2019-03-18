@@ -1,11 +1,26 @@
 # node-app / build . -> will look for the Dockerfile to run the build
-# docker-compose up = docker run myimage
+
+# docker-compose up -d = docker run -d myimage
 # docker-compose up --build = docker build . & docker run myimage
+# docker-compose down = docker stop and remove all containers created
+# docker-compose stop = docker stop services
+
+# restart policies per service/container
+# "no" - never attempt to restart if container stops or crashes
+#        has to be specified with quotes as 'no' because no is interpreted as boolean FALSE
+# always - for any reason, attemp to restart
+# on-failure - only restart if container stops with an error code
+#              if 0 is passed, it will not be restart cause 0 is fine
+#              0 - exited and everything is OK
+#              1, 2, 3 etc - exited because something went wrong
+# unless-stopped - restart unless we forcibly stop it
+
 version: '3'
 services:
   redis-server:
     image: 'redis'
   node-app:
+    restart: on-failure
     build: .
     ports:
       - "4001:8081"
