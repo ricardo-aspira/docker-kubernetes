@@ -4,6 +4,8 @@
 # docker-compose up --build = docker build . & docker run myimage
 # docker-compose down = docker stop and remove all containers created
 # docker-compose stop = docker stop services
+# docker-compose ps ~= docker ps
+#    For the docker-compose.yml in the folder where the file exists
 
 # restart policies per service/container
 # "no" - never attempt to restart if container stops or crashes
