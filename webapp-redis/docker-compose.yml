@@ -1,0 +1,11 @@
+# node-app / build . -> will look for the Dockerfile to run the build
+# docker-compose up = docker run myimage
+# docker-compose up --build = docker build . & docker run myimage
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  node-app:
+    build: .
+    ports:
+      - "4001:8081"
